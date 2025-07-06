@@ -11,8 +11,7 @@ A modern web application for managing and tracking complaints, built with Next.j
 ### Homepage - Complaint Submission
 ![Homepage](screenshots/homepage.png)
 
-### User Dashboard - Personal Complaint History
-![User Dashboard](screenshots/user-dashboard.png)
+
 
 ### Admin Dashboard - Complaint Management
 ![Admin Dashboard](screenshots/admin-dashboard.png)
