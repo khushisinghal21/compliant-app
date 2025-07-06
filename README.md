@@ -6,6 +6,23 @@ A modern web application for managing and tracking complaints, built with Next.j
 
 **Deployed Application:** [https://complaint-ap18c767m-procode21s-projects.vercel.app](https://complaint-ap18c767m-procode21s-projects.vercel.app)
 
+## 📸 Screenshots
+
+### Homepage - Complaint Submission
+![Homepage](screenshots/homepage.png)
+
+### User Dashboard - Personal Complaint History
+![User Dashboard](screenshots/user-dashboard.png)
+
+### Admin Dashboard - Complaint Management
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### Authentication Page
+![Authentication](screenshots/auth-page.png)
+
+### Mobile Responsive Design
+![Mobile View](screenshots/mobile-view.png)
+
 ## Features
 
 ### Authentication & Security
