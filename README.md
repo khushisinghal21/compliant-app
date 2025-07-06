@@ -23,6 +23,15 @@ A modern web application for managing and tracking complaints, built with Next.j
 ### Mobile Responsive Design
 ![Mobile View](screenshots/mobile-view.png)
 
+### Complaint Form Interface
+![Complaint Form](screenshots/complaint-form.png)
+
+### File Upload System
+![File Upload](screenshots/file-upload.png)
+
+### Admin Management Interface
+![Admin Management](screenshots/admin-management.png)
+
 ## Features
 
 ### Authentication & Security
