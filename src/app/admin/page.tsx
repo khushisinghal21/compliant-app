@@ -12,22 +12,27 @@ import {
   Grow
 } from '@mui/material';
 import {
-  Report as ReportIcon,
-  Speed as SpeedIcon,
+  Dashboard as DashboardIcon,
+  Analytics as AnalyticsIcon,
   Security as SecurityIcon,
-  Notifications as NotificationsIcon
+  Speed as SpeedIcon
 } from '@mui/icons-material';
-import ComplaintForm from '@/components/ComplaintForm';
+
+import FilterBar from '@/components/FilterBar';
 import Navigation from '@/components/Navigation';
 import { useAuth } from '@/contexts/AuthContext';
 
-export default function HomePage() {
+export default function AdminPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push('/auth');
+    if (!loading) {
+      if (!user) {
+        router.push('/auth');
+      } else if (user.role !== 'admin') {
+        router.push('/');
+      }
     }
   }, [user, loading, router]);
 
@@ -49,7 +54,7 @@ export default function HomePage() {
     );
   }
 
-  if (!user) {
+  if (!user || user.role !== 'admin') {
     return null; // Will redirect in useEffect
   }
 
@@ -62,7 +67,7 @@ export default function HomePage() {
         sx={{
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           color: 'white',
-          py: 8,
+          py: 6,
           position: 'relative',
           overflow: 'hidden',
           '&::before': {
@@ -87,31 +92,29 @@ export default function HomePage() {
                 sx={{
                   fontWeight: 700,
                   textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                  mb: 3,
+                  mb: 2,
                 }}
               >
-                Submit Your Complaint
+                Admin Dashboard
               </Typography>
               <Typography
                 variant="h5"
                 sx={{
                   opacity: 0.9,
                   textShadow: '0 1px 2px rgba(0,0,0,0.2)',
-                  mb: 4,
-                  maxWidth: 600,
-                  mx: 'auto',
+                  mb: 3,
                 }}
               >
-                We're here to help! Submit your complaint and we'll address it promptly with our efficient management system.
+                Manage and track all complaints from users efficiently
               </Typography>
             </Box>
           </Fade>
         </Container>
       </Box>
 
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box sx={{ py: 6 }}>
-          {/* Features Section */}
+          {/* Admin Features Section */}
           <Fade in timeout={1200}>
             <Box sx={{ mb: 6 }}>
               <Typography
@@ -121,7 +124,7 @@ export default function HomePage() {
                 align="center"
                 sx={{ fontWeight: 600, mb: 4 }}
               >
-                Why Choose Our System?
+                Admin Capabilities
               </Typography>
               
               <Box
@@ -134,24 +137,24 @@ export default function HomePage() {
               >
                 {[
                   {
-                    icon: <ReportIcon sx={{ fontSize: 40 }} />,
-                    title: 'Easy Submission',
-                    desc: 'Simple and intuitive complaint submission process'
+                    icon: <DashboardIcon sx={{ fontSize: 40 }} />,
+                    title: 'Dashboard Overview',
+                    desc: 'Comprehensive view of all complaints and metrics'
                   },
                   {
-                    icon: <SpeedIcon sx={{ fontSize: 40 }} />,
-                    title: 'Fast Response',
-                    desc: 'Quick turnaround time for complaint resolution'
+                    icon: <AnalyticsIcon sx={{ fontSize: 40 }} />,
+                    title: 'Advanced Analytics',
+                    desc: 'Track trends and performance indicators'
                   },
                   {
                     icon: <SecurityIcon sx={{ fontSize: 40 }} />,
-                    title: 'Secure Platform',
-                    desc: 'Your data is protected with JWT authentication'
+                    title: 'Secure Access',
+                    desc: 'Role-based authentication and permissions'
                   },
                   {
-                    icon: <NotificationsIcon sx={{ fontSize: 40 }} />,
-                    title: 'Real-time Updates',
-                    desc: 'Get notified about your complaint status'
+                    icon: <SpeedIcon sx={{ fontSize: 40 }} />,
+                    title: 'Quick Actions',
+                    desc: 'Efficient complaint management tools'
                   }
                 ].map((feature, index) => (
                   <Grow in timeout={1400 + index * 200} key={index}>
@@ -197,7 +200,7 @@ export default function HomePage() {
             </Box>
           </Fade>
 
-          {/* Complaint Form Section */}
+          {/* Complaint Management Section */}
           <Slide direction="up" in timeout={1600}>
             <Box>
               <Typography
@@ -207,7 +210,7 @@ export default function HomePage() {
                 align="center"
                 sx={{ fontWeight: 600, mb: 4 }}
               >
-                Submit Your Complaint
+                Complaint Management
               </Typography>
               <Typography
                 variant="body1"
@@ -215,17 +218,15 @@ export default function HomePage() {
                 align="center"
                 sx={{ mb: 4, maxWidth: 600, mx: 'auto' }}
               >
-                Please fill out the form below with detailed information about your complaint. 
-                We'll review it and get back to you as soon as possible.
+                View, filter, and manage all user complaints. Update status, respond to users, 
+                and track resolution progress.
               </Typography>
               
-              <Box sx={{ maxWidth: 800, mx: 'auto' }}>
-                <ComplaintForm />
-              </Box>
+              <FilterBar />
             </Box>
           </Slide>
         </Box>
       </Container>
     </>
   );
-}
+} 
